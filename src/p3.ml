@@ -1,5 +1,4 @@
 (* N-th Element of a List *)
-
 let rec nth_element alist n =
   match alist with
   | [] -> raise (Failure "nth")
@@ -7,7 +6,6 @@ let rec nth_element alist n =
   | a::tl -> if n = 0 then Some a else nth_element tl (n - 1);;
 
 (* Testcases *)
-
 let test1 = (nth_element [] 0);; (* Exception: Failure "nth" *)
 let test2 = (nth_element [1] 0 = Some 1);;
 let test3 = (nth_element [1] 1);; (* Exception: Failure "nth" *)
