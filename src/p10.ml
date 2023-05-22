@@ -3,7 +3,7 @@
 let insert lst x =
   match lst with
   | [] -> (1, x)::lst
-  | a::tl -> (match a with | n, y -> if x = y then (n + 1, x)::tl else (1, y)::lst)
+  | (n, y)::tl -> if y = x then (n + 1, y)::tl else (1, x)::lst;;
 
 let encode lst =
   List.rev (let rec helper lst acc =
