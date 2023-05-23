@@ -4,19 +4,19 @@ type 'a rle =
   | One of 'a
   | Many of int * 'a;;
 
-  let insert lst x =
-    match lst with
-    | [] -> (One x)::lst
-    | (One y)::tl -> if y = x then (Many (2, y))::tl else (One x)::lst 
-    | (Many (n, y))::tl -> if y = x then (Many (n + 1, y))::tl else (One x)::lst;;
+let insert lst x =
+  match lst with
+  | [] -> (One x)::lst
+  | (One y)::tl -> if y = x then (Many (2, y))::tl else (One x)::lst 
+  | (Many (n, y))::tl -> if y = x then (Many (n + 1, y))::tl else (One x)::lst;;
   
-  let encode lst =
-    List.rev (let rec helper lst acc =
-      match lst with
-      | [] -> acc
-      | a::tl -> helper tl (insert acc a)
-    in
-      helper lst []);;
+let encode lst =
+  List.rev (let rec helper lst acc =
+    match lst with
+    | [] -> acc
+    | a::tl -> helper tl (insert acc a)
+  in
+    helper lst []);;
 
 (* Testcases *)
 let test1 = encode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"];;
